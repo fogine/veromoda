@@ -14,3 +14,5 @@ order_item 2019-02-17T15:25:09Z fogine <fogine@archlaptop> # adds order_item tab
 order_history 2019-02-17T15:36:31Z fogine <fogine@archlaptop> # adds order_history table
 tag 2019-02-17T15:53:00Z fogine <fogine@archlaptop> # adds tag table
 product_tag 2019-02-17T15:54:30Z fogine <fogine@archlaptop> # adds product_tag table
+product_size 2019-02-20T19:24:08Z fogine <fogine@archlaptop> # adds product_size table
+product_price 2019-02-20T19:26:08Z fogine <fogine@archlaptop> # addds product_price table

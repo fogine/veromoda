@@ -1,4 +1,4 @@
--- Verify restfulness:product_color on pg
+-- Verify restfulness:product_price on pg
 
 BEGIN;
 

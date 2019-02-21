@@ -7,12 +7,10 @@ value_type 2019-02-17T14:02:01Z fogine <fogine@archlaptop> # adds value_type tab
 discount 2019-02-17T14:07:19Z fogine <fogine@archlaptop> # adds discount table
 user 2019-02-17T14:08:00Z fogine <fogine@archlaptop> # create user table
 product 2019-02-17T14:09:00Z fogine <fogine@archlaptop> # adds product table
+product_item 2019-02-17T14:11:09Z fogine <fogine@archlaptop> # adds order_item table
 coupon 2019-02-17T14:22:44Z fogine <fogine@archlaptop> # adds coupon table
-product_color 2019-02-17T15:09:20Z fogine <fogine@archlaptop> # adds product_color table
 order 2019-02-17T15:15:33Z fogine <fogine@archlaptop> # adds order table
 order_item 2019-02-17T15:25:09Z fogine <fogine@archlaptop> # adds order_item table
 order_history 2019-02-17T15:36:31Z fogine <fogine@archlaptop> # adds order_history table
 tag 2019-02-17T15:53:00Z fogine <fogine@archlaptop> # adds tag table
 product_tag 2019-02-17T15:54:30Z fogine <fogine@archlaptop> # adds product_tag table
-product_size 2019-02-20T19:24:08Z fogine <fogine@archlaptop> # adds product_size table
-product_price 2019-02-20T19:26:08Z fogine <fogine@archlaptop> # addds product_price table

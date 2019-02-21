@@ -14,7 +14,7 @@ CREATE TABLE coupon (
 
 ALTER TABLE ONLY coupon ADD CONSTRAINT coupon__code__key UNIQUE (code);
 
-ALTER TABLE ONLY counpon ADD CONSTRAINT coupon__discount_id__fkey
+ALTER TABLE ONLY coupon ADD CONSTRAINT coupon__discount_id__fkey
 FOREIGN KEY (discount_id) REFERENCES discount(id) ON UPDATE CASCADE ON DELETE RESTRICT;
 
 COMMIT;

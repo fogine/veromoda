@@ -13,7 +13,7 @@ BEGIN;
     );
 
     ALTER TABLE ONLY order_history ADD CONSTRAINT order_history__order_id__fkey
-    FOREIGN KEY (order_id) REFERENCES order(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    FOREIGN KEY (order_id) REFERENCES "order"(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
     ALTER TABLE ONLY order_history ADD CONSTRAINT order_history__order_status_id__fkey
     FOREIGN KEY (order_status_id) REFERENCES order_status(id) ON UPDATE CASCADE ON DELETE RESTRICT;

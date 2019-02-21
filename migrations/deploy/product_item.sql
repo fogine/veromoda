@@ -9,7 +9,9 @@ BEGIN;
         discount_id integer,
         product_id integer NOT NULL,
         size character varying(8) NOT NULL,
-        color character varying(8) NOT NULL
+        color character varying(8) NOT NULL,
+        created_at timestamp with time zone NOT NULL default current_timestamp,
+        updated_at timestamp with time zone NOT NULL default current_timestamp
     );
 
     ALTER TABLE ONLY product_item ADD CONSTRAINT product_item__product_id__size__color__key UNIQUE (product_id, size, color);

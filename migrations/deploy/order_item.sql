@@ -17,13 +17,13 @@ BEGIN;
     );
 
     ALTER TABLE ONLY order_item ADD CONSTRAINT order_item__user_id__fkey
-    FOREIGN KEY (user_id) REFERENCES user(id) ON UPDATE CASCADE ON DELETE RESTRICT;
+    FOREIGN KEY (user_id) REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE RESTRICT;
 
     ALTER TABLE ONLY order_item ADD CONSTRAINT order_item__product_item_id__fkey
     FOREIGN KEY (product_item_id) REFERENCES product_item(id) ON UPDATE CASCADE ON DELETE RESTRICT;
 
     ALTER TABLE ONLY order_item ADD CONSTRAINT order_item__order_id__fkey
-    FOREIGN KEY (order_id) REFERENCES order(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    FOREIGN KEY (order_id) REFERENCES "order"(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
     ALTER TABLE ONLY order_item ADD CONSTRAINT order_item__order_status_id__fkey
     FOREIGN KEY (order_status_id) REFERENCES order_status(id) ON UPDATE CASCADE ON DELETE RESTRICT;

@@ -2,6 +2,6 @@
 
 BEGIN;
 
-    drop table user;
+    drop table "user";
 
 COMMIT;

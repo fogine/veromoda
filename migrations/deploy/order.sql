@@ -2,7 +2,7 @@
 
 BEGIN;
 
-    CREATE TABLE order (
+    CREATE TABLE "order" (
         id SERIAL PRIMARY KEY,
         user_id integer NOT NULL,
         payment_method_id integer NOT NULL,
@@ -21,16 +21,16 @@ BEGIN;
         deleted_at timestamp with time zone
     );
 
-    ALTER TABLE ONLY order ADD CONSTRAINT order__user_id__fkey
-    FOREIGN KEY (user_id) REFERENCES user(id) ON UPDATE CASCADE ON DELETE RESTRICT;
+    ALTER TABLE ONLY "order" ADD CONSTRAINT order__user_id__fkey
+    FOREIGN KEY (user_id) REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE RESTRICT;
 
-    ALTER TABLE ONLY order ADD CONSTRAINT order__payment_method_id__fkey
+    ALTER TABLE ONLY "order" ADD CONSTRAINT order__payment_method_id__fkey
     FOREIGN KEY (payment_method_id) REFERENCES payment_method(id) ON UPDATE CASCADE ON DELETE RESTRICT;
 
-    ALTER TABLE ONLY order ADD CONSTRAINT order__coupon_id__fkey
+    ALTER TABLE ONLY "order" ADD CONSTRAINT order__coupon_id__fkey
     FOREIGN KEY (coupon_id) REFERENCES coupon(id) ON UPDATE CASCADE ON DELETE RESTRICT;
 
-    ALTER TABLE ONLY order ADD CONSTRAINT order__order_status_id__fkey
+    ALTER TABLE ONLY "order" ADD CONSTRAINT order__order_status_id__fkey
     FOREIGN KEY (order_status_id) REFERENCES order_status(id) ON UPDATE CASCADE ON DELETE RESTRICT;
 
 COMMIT;

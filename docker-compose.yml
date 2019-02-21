@@ -1,0 +1,47 @@
+version: '3.4'
+x-env: &x-env
+  POSTGRES_DB       : ${POSTGRES_DB:-postgres}
+  POSTGRES_DB_LIST  : ${POSTGRES_DB:-postgres}
+  POSTGRES_USER     : ${POSTGRES_USER:-postgres}
+  POSTGRES_PASSWORD : ${POSTGRES_PASSWORD}
+  POSTGRES_HOST     : ${POSTGRES_HOST:-postgres}
+services:
+  web:
+    build: .
+    ports:
+      - "3001"
+      - "3002"
+      - "3003"
+      - "3004"
+      - "3005"
+    environment:
+      <<: *x-env
+      PUB_PORT        : 3001
+      S2S_PORT        : 3002
+      CLI_PORT        : 3003
+      DOCS_PORT       : 3004
+      S2S_DOCS_PORT   : 3005
+      NODE_ENV        : ${NODE_ENV:-development}
+      SQL_DEBUG       : ${SQL_DEBUG:-false}
+      DEBUG:
+      VHOST:
+      VHOST_SSL:
+      VHOST_PROTOCOL:
+    depends_on:
+      - postgres
+    volumes:
+      - type: bind
+        source: ${CONFIG:-./config/template/config.json5}
+        target: /app/config/template/config.json5
+    command:
+      >
+       /wait-for-it.sh postgres:5432 -- bash -c
+       '/resolve-service-conf.sh ./config/template/config.json5 ./config/$$NODE_ENV/config.json5
+       && sqitch deploy db:pg://$$POSTGRES_USER@postgres/$$POSTGRES_DB
+       && npm start'
+  postgres:
+    image: "postgres:11-alpine"
+    ports:
+      - "5432"
+    environment:
+      <<: *x-env

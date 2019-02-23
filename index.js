@@ -6,7 +6,6 @@ const config  = require('bi-config');
 const Service = require('bi-service').Service;
 
 const service = module.exports = new Service(config);
-require('./lib/resources'); //load resources
 
 service.resourceManager.register('knex', require('./lib/knex.js'));
 
@@ -16,6 +15,8 @@ service.on('set-up', function() {
 
 // bi-service plugin registration
 require('bi-service-sdk');
-require('bi-service-doc');
+//require('bi-service-doc');
 module.exports.Restfulness = require('bi-service-restfulness');
+require('./lib/resources'); //load resources
+
 //module.exports.Shell = require('bi-service-shell');

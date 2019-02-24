@@ -32,7 +32,7 @@
         "pg": "^7.8.0",
         "pg-hstore": "2.3.*",
         "pg-native": "^3.0.0",
-        "bi-service": "^1.7.0",
+        "bi-service": "^2.0.0",
         "bi-service-doc": "^2.0.5",
         "bi-service-sdk": "^1.4.0",
         "bi-service-shell": "~0.4.2",

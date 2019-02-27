@@ -2,6 +2,6 @@
 
 BEGIN;
 
-    drop table image;
+    drop table image cascade;
 
 COMMIT;

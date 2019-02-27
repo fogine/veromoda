@@ -8,13 +8,13 @@ BEGIN;
         payment_method_id integer NOT NULL,
         coupon_id integer,
         order_status_id integer NOT NULL,
-        price decimal(7,2) not null, -- total price of gogds with tax included (without shipping)
+        price decimal(9,2) not null, -- total price of gogds with tax included (without shipping)
         tax decimal(7,2) not null, -- tax portion value of price
         shipping_price decimal(7,2) not null, -- shipping price with tax included
         shipping_tax decimal(7,2) not null, -- tax portion of shipping price
         ip_address character varying(32),
         street character varying(64), -- TODO can be null, what about no delivery?
-        zip integer,-- TODO can be null, what about no delivery?
+        zip character varying(16),-- TODO can be null, what about no delivery?
         city character varying(64),-- TODO can be null, what about no delivery?
         created_at timestamp with time zone NOT NULL default current_timestamp,
         updated_at timestamp with time zone NOT NULL default current_timestamp,

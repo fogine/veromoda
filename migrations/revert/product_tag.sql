@@ -2,6 +2,6 @@
 
 BEGIN;
 
--- XXX Add DDLs here.
+    drop table product_tag cascade;
 
 COMMIT;

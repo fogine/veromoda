@@ -25,6 +25,7 @@
     },
     "scripts": {
         "start": "./node_modules/.bin/bi-service run",
+        "migrate": "sqitch deploy db:pg://$POSTGRES_USER@postgres/$POSTGRES_DB",
         "test:int": "NODE_ENV=test ./node_modules/.bin/mocha --ui bdd -c --bail --check-leaks -t 20000 -R spec './tests/src/integration/index.js'",
         "test": "./tests/docker-compose-run.sh"
     },
@@ -42,6 +43,7 @@
         "lodash": "^4.17.11"
     },
     "devDependencies": {
+        "bi-service-restfulness-seeder": "0.1.8",
         "chai": "^4.2.0",
         "mocha": "^5.2.0",
         "chai-as-promised": "^5.3.0",

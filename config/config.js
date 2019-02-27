@@ -31,19 +31,19 @@ const response = {
 
 module.exports = {
     apps: {
-        public: {
-            baseUrl: `${VHOST_PROTOCOL}://${VHOST}:${PUB_PORT}`,
-            listen: PUB_PORT,
-            stopOnError: false,
-            doc: {
-                baseUrl: `${VHOST_PROTOCOL}://${VHOST}:${PUB_DOCS_PORT}`,
-                listen: PUB_DOCS_PORT,
-                name: 'docs',
-                title: 'Veromoda',
-                stopOnError: true
-            },
-            bodyParser: bodyParser
-        },
+        //public: {
+            //baseUrl: `${VHOST_PROTOCOL}://${VHOST}:${PUB_PORT}`,
+            //listen: PUB_PORT,
+            //stopOnError: false,
+            //doc: {
+                //baseUrl: `${VHOST_PROTOCOL}://${VHOST}:${PUB_DOCS_PORT}`,
+                //listen: PUB_DOCS_PORT,
+                //name: 'docs',
+                //title: 'Veromoda',
+                //stopOnError: true
+            //},
+            //bodyParser: bodyParser
+        //},
         internal: {
             baseUrl: `${VHOST_PROTOCOL}://${VHOST}:${INTERNAL_PORT}`,
             listen: INTERNAL_PORT,

@@ -2,6 +2,6 @@
 
 BEGIN;
 
-    drop table product;
+    drop table product cascade;
 
 COMMIT;

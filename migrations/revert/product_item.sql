@@ -2,6 +2,6 @@
 
 BEGIN;
 
-    drop table product_item;
+    drop table product_item cascade;
 
 COMMIT;

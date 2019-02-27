@@ -2,6 +2,6 @@
 
 BEGIN;
 
-    drop table value_type;
+    drop table value_type cascade;
 
 COMMIT;

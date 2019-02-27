@@ -2,6 +2,6 @@
 
 BEGIN;
 
-    drop table discount;
+    drop table discount cascade;
 
 COMMIT;

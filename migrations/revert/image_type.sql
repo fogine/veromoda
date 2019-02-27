@@ -2,6 +2,6 @@
 
 BEGIN;
 
-    drop table image_type;
+    drop table image_type cascade;
 
 COMMIT;

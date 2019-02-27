@@ -2,6 +2,6 @@
 
 BEGIN;
 
-    drop table payment_method;
+    drop table payment_method cascade;
 
 COMMIT;

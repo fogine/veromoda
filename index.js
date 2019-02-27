@@ -18,5 +18,6 @@ require('bi-service-sdk');
 //require('bi-service-doc');
 module.exports.Restfulness = require('bi-service-restfulness');
 require('./lib/resources'); //load resources
+require('bi-service-restfulness-seeder');
 
 //module.exports.Shell = require('bi-service-shell');

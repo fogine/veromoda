@@ -2,6 +2,6 @@
 
 BEGIN;
 
-    drop table order_status;
+    drop table order_status cascade;
 
 COMMIT;

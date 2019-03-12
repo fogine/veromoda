@@ -10,7 +10,7 @@ import {
 } from 'react-admin';
 import { stringify } from 'query-string';
 
-const API_URL = 'http://127.0.0.1:3002/api/v1.0';
+const API_URL = '/api/v1.0';
 
 /**
  * @param {String} type One of the constants appearing at the top of this file, e.g. 'UPDATE'
@@ -23,20 +23,66 @@ const convertDataProviderRequestToHTTP = (type, resource, params) => {
     case GET_LIST: {
         const { page, perPage } = params.pagination;
         const { field, order } = params.sort;
+        const _filter = {};
         const query = {
             _offset: (page-1) * perPage,
             _limit: perPage,
             _sort: (order === 'ASC' ? '' : '-') + field
         };
-        Object.assign(query, params.filter);
+
+        if (resource === 'orders') {
+            let embed = [
+                'user.id',
+                'user.email',
+                'payment_method.id',
+                'payment_method.name',
+                'order_status.id',
+                'order_status.name'
+            ];
+            query._embed = embed.join(',');
+        }
+
+        Object.keys(params.filter).forEach(function(key) {
+            if (typeof params.filter[key] === 'object' && params.filter[key] !== null) {
+                Object.keys(params.filter[key]).forEach(function(subKey) {
+                    _filter[`${key}.${subKey}`] =
+                        _wrapFilterValue(params.filter[key][subKey]);
+                });
+            } else {
+                _filter[key] = _wrapFilterValue(params.filter[key]);
+            }
+        });
+
+        query._filter = JSON.stringify(_filter);
+        //Object.assign(query, params.filter);
         return { url: `${API_URL}/${resource}?${stringify(query)}` };
     }
     case GET_ONE:
-        return { url: `${API_URL}/${resource}/${params.id}` };
+
+        const query = {};
+        if (resource === 'orders') {
+            let embed = [
+                'user.id',
+                'user.email',
+                'user.first_name',
+                'user.last_name',
+                'payment_method.id',
+                'payment_method.name',
+                'order_status.id',
+                'order_status.name'
+            ];
+            query._embed = embed.join(',');
+        }
+        return { url: `${API_URL}/${resource}/${params.id}?${stringify(query)}` };
     case GET_MANY: {
         const query = {
-            filter: JSON.stringify({ id: params.ids }),
+            _filter: JSON.stringify({ id: {in: params.ids} }),
         };
+
+        if (resource === 'product_items') {
+            query._embed = 'product.name';
+        }
+
         return { url: `${API_URL}/${resource}?${stringify(query)}` };
     }
     case GET_MANY_REFERENCE: {
@@ -48,7 +94,17 @@ const convertDataProviderRequestToHTTP = (type, resource, params) => {
             _sort: (order === 'ASC' ? '' : '-') + field
         };
         Object.assign(query, params.filter);
-        query[params.target] = params.id;
+
+        if (resource === 'orders' && params.target === 'user_id') {
+            resource = `users/${params.id}/orders`;
+            query._embed = 'order_status.name,payment_method.name';
+        } else if (resource === 'order_items' && params.target === 'order_id') {
+            resource = `orders/${params.id}/order_items`;
+            query._embed = 'order_status.id,order_status.name';
+        } else {
+            query[params.target] = params.id;
+        }
+
         return { url: `${API_URL}/${resource}?${stringify(query)}` };
     }
     case UPDATE:
@@ -81,15 +137,16 @@ const convertDataProviderRequestToHTTP = (type, resource, params) => {
 const convertHTTPResponseToDataProvider = (response, type, resource, params) => {
     const { headers, json } = response;
     switch (type) {
-    case GET_LIST:
-        return {
-            data: json.map(x => x),
-            total: parseInt(headers.get('x-total-count'), 10),
-        };
-    case CREATE:
-        return { data: { ...params.data, id: json.id } };
-    default:
-        return { data: json };
+        case GET_LIST:
+        case GET_MANY_REFERENCE:
+            return {
+                data: json.map(x => x),
+                total: parseInt(headers.get('x-total-count')),
+            };
+        case CREATE:
+            return { data: { ...params.data, id: json.id } };
+        default:
+            return { data: json };
     }
 };
 
@@ -105,3 +162,14 @@ export default (type, resource, params) => {
     return fetchJson(url, options)
         .then(response => convertHTTPResponseToDataProvider(response, type, resource, params));
 };
+
+/*
+ * @param {String|Integer} val
+ */
+function _wrapFilterValue(val) {
+    if (typeof val === 'string') {
+        return {like: `%${val}%`};
+    } else {
+        return {eq: val};
+    }
+}

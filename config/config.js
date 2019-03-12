@@ -22,6 +22,7 @@ const response = {
         ["Access-Control-Allow-Origin", "*"],
         ["Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE, CONNECT"],
         ["Access-Control-Allow-Headers", "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept"],
+        ["Access-Control-Expose-Headers", "X-Total-Count"],
         //24 hours
         ["Access-Control-Max-Age", "86400"],
         ["X-Content-Type-Options", "nosniff"],
@@ -51,7 +52,6 @@ module.exports = {
             doc: {
                 baseUrl: `${VHOST_PROTOCOL}://${VHOST}:${INTERNAL_DOCS_PORT}`,
                 listen: INTERNAL_DOCS_PORT,
-                name: 'docs-internal', //used in the cli
                 title: 'Veromoda', //front-end title
                 stopOnError: true
             },

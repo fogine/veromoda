@@ -9,6 +9,6 @@ BEGIN;
 
     ALTER TABLE ONLY order_status ADD CONSTRAINT order_status__name__key UNIQUE (name);
 
-    INSERT INTO order_status (name) VALUES ('Pending'), ('Confirmed'), ('Shipped'), ('Fraud');
+    INSERT INTO order_status (name) VALUES ('Confirmed'), ('Fraud'), ('Pending'), ('Shipped');
 
 COMMIT;

@@ -7,8 +7,8 @@ CREATE TABLE discount (
     label character varying(32),
     value decimal(7,2) not null,
     value_type_id integer, -- percentage / absolute discount value
-    published boolean,
-    stars_at timestamp with time zone NOT NULL,
+    published boolean default false,
+    starts_at timestamp with time zone NOT NULL,
     expires_at timestamp with time zone NOT NULL,
     created_at timestamp with time zone NOT NULL default current_timestamp,
     updated_at timestamp with time zone NOT NULL default current_timestamp

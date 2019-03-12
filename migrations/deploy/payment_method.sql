@@ -11,6 +11,6 @@ BEGIN;
 
     ALTER TABLE ONLY payment_method ADD CONSTRAINT payment_method__name__key UNIQUE (name);
 
-    INSERT INTO payment_method (name, code) VALUES ('Credit card', 'C'), ('Bank transfer', 'B');
+    INSERT INTO payment_method (name, code) VALUES ('Bank transfer', 'B'), ('Credit card', 'C');
 
 COMMIT;

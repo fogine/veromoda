@@ -2,8 +2,8 @@
 
 global.Promise = require('bluebird');
 
-const config  = require('bi-config');
-const Service = require('bi-service').Service;
+const config  = require('serviser-config');
+const Service = require('serviser').Service;
 
 const service = module.exports = new Service(config);
 
@@ -13,11 +13,11 @@ service.on('set-up', function() {
     require('./lib/app.js');
 });
 
-// bi-service plugin registration
-require('bi-service-sdk');
-//require('bi-service-doc');
-module.exports.Restfulness = require('bi-service-restfulness');
+// serviser plugin registration
+require('serviser-sdk');
+//require('serviser-doc');
+module.exports.Restfulness = require('serviser-restfulness');
 require('./lib/resources'); //load resources
-require('bi-service-restfulness-seeder');
+require('serviser-restfulness-seeder');
 
 //module.exports.Shell = require('bi-service-shell');

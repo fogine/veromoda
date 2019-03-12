@@ -9,9 +9,6 @@ COPY package.json .
 #Eg. if NODE_ENV=production, no devDependencies are included
 ARG NODE_ENV=development
 
-#TODO delete when we have access to packages on registry.npmjs.com
-RUN echo 'registry=http://127.0.0.1:4873' > ~/.npmrc
-
 # Prepare the env for building native dependencies
 # This will NOT increase final docker image size as additional dependencies
 # are removed after npm install

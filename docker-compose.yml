@@ -6,8 +6,7 @@ x-env: &x-env
   POSTGRES_HOST     : ${POSTGRES_HOST:-postgres}
 services:
   web:
-    image: 'veromoda'
-    #build: .
+    build: .
     ports:
       - "3001"
       - "3002:3002"

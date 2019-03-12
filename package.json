@@ -40,12 +40,12 @@
         "serviser-sdk": "^1.4.0",
         "serviser-shell": "~0.4.2",
         "serviser-knex": "1.0.3",
-        "serviser-restfulness": "0.5.0",
+        "serviser-restfulness": "0.5.1",
         "bluebird": "^3.5.3",
         "lodash": "^4.17.11"
     },
     "devDependencies": {
-        "serviser-restfulness-seeder": "0.4.1",
+        "serviser-restfulness-seeder": "0.1.0",
         "chai": "^4.2.0",
         "mocha": "^5.2.0",
         "chai-as-promised": "^5.3.0",
